@@ -1,1 +1,0 @@
-Szépréthy Regina Anita
