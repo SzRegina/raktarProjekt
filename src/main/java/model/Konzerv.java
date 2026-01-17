@@ -11,14 +11,14 @@ public class Konzerv extends Elelmiszer {
     private String leiras;
     private String receptFajlNev; // lehet null
 
-    // nélküle
+    // no recept
     public Konzerv(String nev, String gyarto, LocalDate lejarat, String leiras) throws LejartElelmiszerKivetel {
         super(nev, gyarto, lejarat);
         this.leiras = leiras;
         this.receptFajlNev = null;
     }
 
-    // vele
+    // recepttel
     public Konzerv(String nev, String gyarto, LocalDate lejarat, String leiras, String receptFajlNev)
             throws LejartElelmiszerKivetel {
         super(nev, gyarto, lejarat);
@@ -27,7 +27,6 @@ public class Konzerv extends Elelmiszer {
     }
 
     public void receptetMutat() {
-        // csak létezés ellenőrzés
         if (receptFajlNev != null && Files.exists(Path.of(receptFajlNev))) {
 
         }
