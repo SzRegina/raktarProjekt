@@ -47,8 +47,14 @@ public class RaktarApp {
                     "Marhapörkölt tarhonyával",
                     "Házias ízek",
                     LocalDate.now().plusDays(2),
-                    "Ivóvíz, 22% pácolt marhahús és marha- szív keveréke (41,5% marhahús, 41,5% marha- szív, ivóvíz, étkezési só, stabilizátorok: trifoszfátok, difoszfátok, sűrítőanyag: E 407a), 10% tarhonya [durumdara (glutén), víz], Natúr lecsó (ivóvíz, étkezési paprika, sűrített paradicsom, cukor, étkezési só), Napraforgó étolaj, Sűrített paradicsom, Fűszerek, Étkezési só, Vöröshagyma dara, Ételízesítő, Csípős őrölt paprika\n" +
+                    "Ivóvíz, 22% pácolt marhahús és marha- szív keveréke (41,5 marhahús, 41,5 marha- szív, ivóvíz, étkezési só, stabilizátorok: trifoszfátok, difoszfátok, sűrítőanyag: E 407a), 10% tarhonya [durumdara (glutén), víz], Natúr lecsó (ivóvíz, étkezési paprika, sűrített paradicsom, cukor, étkezési só), Napraforgó étolaj, Sűrített paradicsom, Fűszerek, Étkezési só, Vöröshagyma dara, Ételízesítő, Csípős őrölt paprika\n" +
                             "A termék szóját is feldolgozó üzemben készült."
+            ));
+            raktar.elelmiszerFelvesz(new Konzerv(
+                    "Valamilyen konzerv megint",
+                    "miért kínai",
+                    LocalDate.now().plusDays(8),
+                    "utf-8 helló????"
             ));
 
 
@@ -57,6 +63,7 @@ public class RaktarApp {
 
             System.out.println(e.getMessage());
         }
+        //be
         try (ObjectOutputStream oos =
                      new ObjectOutputStream(new FileOutputStream("raktar.bin"))) {
 
@@ -64,5 +71,24 @@ public class RaktarApp {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        //vissza
+        Raktar betoltottRaktar = null;
+
+
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(new FileInputStream("raktar.bin"))) {
+
+            betoltottRaktar = (Raktar) ois.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //bjútiful
+        if (betoltottRaktar != null) {
+            for (Elelmiszer e : betoltottRaktar) {
+                System.out.println(e.getNev() + " - " + e.getGyarto() + " - " + e.getLejarat());
+            }
         }
 }}
