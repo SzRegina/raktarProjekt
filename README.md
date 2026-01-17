@@ -1,1 +1,1 @@
-# raktarProjekt
+# Szépréthy Regina Anita
